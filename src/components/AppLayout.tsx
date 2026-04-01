@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Users, Package, Receipt, CreditCard, LogOut, Menu, ShoppingCart } from 'lucide-react';
+import { LayoutDashboard, Users, Package, Receipt, CreditCard, LogOut, Menu, ShoppingCart, Megaphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 const navItems = [
@@ -10,6 +10,7 @@ const navItems = [
   { to: '/products', icon: Package, label: 'Products' },
   { to: '/billing', icon: Receipt, label: 'Billing' },
   { to: '/credits', icon: CreditCard, label: 'Credits' },
+  { to: '/campaigns', icon: Megaphone, label: 'Campaigns' },
 ];
 
 export default function AppLayout({ children }: { children: ReactNode }) {

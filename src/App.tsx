@@ -11,6 +11,7 @@ import Customers from "@/pages/Customers";
 import Products from "@/pages/Products";
 import Billing from "@/pages/Billing";
 import Credits from "@/pages/Credits";
+import Campaigns from "@/pages/Campaigns";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ function AppRoutes() {
       <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
       <Route path="/billing" element={<ProtectedRoute><Billing /></ProtectedRoute>} />
       <Route path="/credits" element={<ProtectedRoute><Credits /></ProtectedRoute>} />
+      <Route path="/campaigns" element={<ProtectedRoute><Campaigns /></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
