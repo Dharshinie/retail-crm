@@ -3,6 +3,8 @@ import { useAuth } from '@/hooks/useAuth';
 import { Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Users, Package, Receipt, CreditCard, LogOut, Menu, ShoppingCart, Megaphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ThemeCustomizer } from '@/components/ThemeCustomizer';
+import { useThemeSettings } from '@/hooks/useThemeSettings';
 import { cn } from '@/lib/utils';
 const navItems = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
@@ -17,12 +19,18 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   const { signOut, user } = useAuth();
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const backgroundImageUrl = 'https://i.pinimg.com/1200x/43/3b/bb/433bbb73aa539cbe46c2779320e2eb6f.jpg';
+  const { activeBackground } = useThemeSettings();
 
   return (
     <div className="relative flex h-screen overflow-hidden">
-      {/* Full-screen background */}
-      <img src={backgroundImageUrl} alt="" className="absolute inset-0 h-full w-full object-cover" width={1920} height={1080} />
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500"
+        style={{
+          backgroundImage: activeBackground
+            ? `url(${activeBackground})`
+            : 'linear-gradient(135deg, hsl(var(--background)), hsl(var(--secondary)), hsl(var(--background)))',
+        }}
+      />
       <div className="absolute inset-0 bg-gradient-to-br from-background/92 via-background/88 to-background/92" />
 
       {/* Mobile overlay */}
@@ -86,9 +94,10 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           <button className="lg:hidden rounded-lg p-2 hover:bg-secondary/50 transition-colors" onClick={() => setSidebarOpen(true)}>
             <Menu className="h-5 w-5" />
           </button>
-          <h1 className="font-heading text-xl font-semibold">
+          <h1 className="font-heading text-xl font-semibold mr-auto">
             {navItems.find(n => n.to === location.pathname)?.label || 'GroceryCRM'}
           </h1>
+          <ThemeCustomizer />
         </header>
         <main className="flex-1 overflow-auto p-4 lg:p-6">
           {children}

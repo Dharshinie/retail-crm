@@ -55,7 +55,7 @@ export default function Customers() {
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search customers..."
-            className="h-11 border-border/50 bg-secondary/30 pl-9 backdrop-blur-sm"
+            className="h-11 border-border/50 bg-secondary/30 pl-9 backdrop-blur-sm text-white"
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
